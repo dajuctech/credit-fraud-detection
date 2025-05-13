@@ -14,6 +14,7 @@ env/
 # Jupyter Notebook checkpoints
 .ipynb_checkpoints/
 
+
 # System-specific files
 .DS_Store
 Thumbs.db
@@ -29,7 +30,7 @@ credentials.json
 # Model artifacts and logs
 #models/
 *.pkl
-*.joblib
+#*.joblib
 *.h5
 *.pt
 logs/
@@ -49,3 +50,6 @@ docker-compose.override.yml
 # Misc
 *.bak
 *.swp
+
+
+
