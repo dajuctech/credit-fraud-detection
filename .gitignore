@@ -1,6 +1,7 @@
 # Byte-compiled / cache
 __pycache__/
 *.py[cod]
+*$py.class
 *.ipynb_checkpoints
 
 # Environment
@@ -13,7 +14,6 @@ env/
 
 # Jupyter Notebook checkpoints
 .ipynb_checkpoints/
-
 
 # System-specific files
 .DS_Store
@@ -51,5 +51,22 @@ docker-compose.override.yml
 *.bak
 *.swp
 
+# Documents
+*.docx
 
+# Distribution / packaging
+dist/
+build/
+*.egg-info/
 
+# Testing
+.coverage
+htmlcov/
+.pytest_cache/
+
+# Virtual environments
+.python-version
+
+# Large files
+*.hdf5
+*.bin

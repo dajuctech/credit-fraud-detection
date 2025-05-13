@@ -14,27 +14,32 @@ from xgboost import XGBClassifier
 
 def train_models(X, y, save_dir="models"):
     """
-    Trains multiple classification models on provided data and saves them.
+    Trains multiple classification models and saves them to disk.
+
     Args:
         X (DataFrame): Feature matrix.
         y (Series): Target vector.
         save_dir (str): Directory to save trained models.
+
     Returns:
-        dict: Dictionary of trained models and their evaluation results.
+        dict: Evaluation results of each model.
     """
     if not os.path.exists(save_dir):
         os.makedirs(save_dir)
 
     models = {
-        "LogisticRegression": LogisticRegression(max_iter=1000)
-        #"RandomForest": RandomForestClassifier(n_estimators=100),
+        "LogisticRegression": LogisticRegression(max_iter=1000),
+        #"RandomForest": RandomForestClassifier(n_estimators=100, random_state=42),
         #"NaiveBayes": GaussianNB(),
         #"SVM": SVC(probability=True),
         #"KNN": KNeighborsClassifier(),
         #"XGBoost": XGBClassifier(use_label_encoder=False, eval_metric='logloss')
     }
 
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, stratify=y, random_state=42)
+    # Split data
+    X_train, X_test, y_train, y_test = train_test_split(
+        X, y, test_size=0.2, stratify=y, random_state=42
+    )
 
     results = {}
 
@@ -52,16 +57,22 @@ def train_models(X, y, save_dir="models"):
         joblib.dump(model, model_path)
 
         results[name] = {
-            "confusion_matrix": confusion_matrix(y_test, preds),
+            "confusion_matrix": confusion_matrix(y_test, preds).tolist(),
             "classification_report": classification_report(y_test, preds, output_dict=True)
         }
 
     return results
 
-# Example run (optional, for testing)
+# Example run for testing
 if __name__ == "__main__":
     from preprocessing import clean_and_scale, apply_smote
+
+    # Load dataset
     df = pd.read_csv("data/creditcard.csv")
+
+    # Preprocessing
     X, y = clean_and_scale(df)
     X_res, y_res = apply_smote(X, y)
+
+    # Train models and save
     results = train_models(X_res, y_res)
