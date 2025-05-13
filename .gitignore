@@ -27,7 +27,7 @@ data/
 credentials.json
 
 # Model artifacts and logs
-models/
+#models/
 *.pkl
 *.joblib
 *.h5
