@@ -9,16 +9,43 @@ __pycache__/
 venv/
 ENV/
 env/
+*.env
 
 # Jupyter Notebook checkpoints
-.ipynb_checkpoints
+.ipynb_checkpoints/
 
-# System
+# System-specific files
 .DS_Store
 Thumbs.db
 
-# Data & credentials
+# Data and credentials
 data/
 *.csv
 *.zip
+*.tar.gz
 .kaggle/
+credentials.json
+
+# Model artifacts and logs
+models/
+*.pkl
+*.joblib
+*.h5
+*.pt
+logs/
+*.log
+
+# Streamlit and FastAPI cache
+.streamlit/
+__fastapi_cache__/
+
+# Docker
+*.dockerfile
+docker-compose.override.yml
+
+# VSCode settings
+.vscode/
+
+# Misc
+*.bak
+*.swp
